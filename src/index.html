@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOR6 Solutions</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050a10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .card {
+            width: 680px;
+            background: linear-gradient(135deg, #060d1a 0%, #0a1628 50%, #060d1a 100%);
+            border: 1px solid rgba(0, 180, 255, 0.25);
+            border-radius: 20px;
+            padding: 48px 52px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 60px rgba(0, 150, 255, 0.12),
+                0 0 120px rgba(0, 80, 200, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        /* Grid background */
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 150, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            border-radius: 20px;
+        }
+
+        /* Glow top-left */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 120, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .glow-br {
+            position: absolute;
+            bottom: -60px;
+            right: -60px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(0, 220, 150, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Top accent line */
+        .accent-line {
+            position: absolute;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00aaff, #00ffaa, transparent);
+            border-radius: 2px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .logo-box {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #0044cc, #0099ff);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: -1px;
+            box-shadow: 0 0 24px rgba(0, 120, 255, 0.5), 0 0 48px rgba(0, 120, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .brand-name {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 28px;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 180, 255, 0.6);
+            line-height: 1;
+        }
+
+        .brand-name span {
+            color: #00ccff;
+        }
+
+        .brand-tag {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(150, 200, 255, 0.7);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 150, 255, 0.4), rgba(0, 255, 150, 0.3), transparent);
+            margin-bottom: 28px;
+        }
+
+        /* Headline */
+        .headline {
+            margin-bottom: 20px;
+        }
+
+        .headline h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: #00ccff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .headline h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 200, 255, 0.4), transparent);
+        }
+
+        .headline p {
+            font-size: 15px;
+            color: rgba(200, 220, 255, 0.8);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: #00ffaa;
+            font-weight: 600;
+        }
+
+        /* Features grid */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .feature-item {
+            background: rgba(0, 100, 200, 0.08);
+            border: 1px solid rgba(0, 150, 255, 0.15);
+            border-radius: 10px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: rgba(0, 200, 255, 0.35);
+        }
+
+        .feature-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 12.5px;
+            color: rgba(190, 215, 255, 0.85);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: rgba(0, 60, 120, 0.15);
+            border: 1px solid rgba(0, 150, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: rgba(100, 180, 255, 0.6);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, rgba(0, 100, 200, 0.3), rgba(0, 180, 255, 0.15));
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-label {
+            font-size: 10px;
+            color: rgba(100, 160, 255, 0.6);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            font-size: 14px;
+            color: #c8e0ff;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value a {
+            color: #c8e0ff;
+            text-decoration: none;
+        }
+
+        /* Bottom bar */
+        .bottom-bar {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 100, 200, 0.2);
+        }
+
+        .bottom-text {
+            font-size: 11px;
+            color: rgba(100, 150, 200, 0.5);
+            letter-spacing: 1px;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(0, 200, 100, 0.15), rgba(0, 150, 255, 0.1));
+            border: 1px solid rgba(0, 200, 120, 0.3);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 10px;
+            color: #00ffaa;
+            letter-spacing: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Scan animation */
+        @keyframes scan {
+            0% {
+                top: 0;
+                opacity: 0.6;
+            }
+
+            100% {
+                top: 100%;
+                opacity: 0;
+            }
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.3), transparent);
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Blink */
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #00ffaa;
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+            box-shadow: 0 0 6px #00ffaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="accent-line"></div>
+        <div class="scan-line"></div>
+        <div class="glow-br"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="logo-box">F6</div>
+                <div class="brand">
+                    <div class="brand-name">FOR<span>6</span></div>
+                    <div class="brand-tag">Solutions &amp; Dev Systems</div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="headline">
+                <h2>Gestão de Lojas Online com IA</h2>
+                <p>
+                    Sua loja no <span class="highlight">Mercado Livre e outras lojas digitais</span>, gerenciada do zero
+                    — do cadastro do produto ao fechamento da venda. Plataforma própria, <span class="highlight">100%
+                        automatizada com Inteligência Artificial</span> e divulgação em plataformas de anúncios.
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">🛒</span>
+                    <span class="feature-text">Cadastro e gestão completa de produtos</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🤖</span>
+                    <span class="feature-text">Automação total com Inteligência Artificial</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <span class="feature-text">Plataforma própria de gerenciamento</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📢</span>
+                    <span class="feature-text">Divulgação em plataformas de anúncios</span>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-title">Contato</div>
+
+                <div class="contact-row">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-info">
+                        <span class="contact-label">E-mail</span>
+                        <span class="contact-value">for6solutions@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <span class="contact-label">WhatsApp / Celular</span>
+                        <span class="contact-value">(62) 9856-1249 &nbsp;|&nbsp; (33) 99849-7355</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-bar">
+                <span class="bottom-text">CNPJ 65.818.753/0001-54</span>
+                <span class="badge"><span class="dot"></span>&nbsp; Ativo</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
