@@ -297,7 +297,7 @@
 
         .bottom-text {
             font-size: 11px;
-            color: rgba(100, 150, 200, 0.5);
+            color: #ffffff;
             letter-spacing: 1px;
             font-family: 'Orbitron', monospace;
         }
@@ -360,6 +360,240 @@
             border-radius: 50%;
             animation: blink 2s ease-in-out infinite;
             box-shadow: 0 0 6px #00ffaa;
+        }
+
+        /* RESPONSIVO - MOBILE (até 600px) */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 100%;
+                padding: 28px 20px;
+            }
+
+            .header {
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+
+            .logo-box {
+                width: 52px;
+                height: 52px;
+                font-size: 16px;
+            }
+
+            .brand-name {
+                font-size: 22px;
+                letter-spacing: 2px;
+            }
+
+            .brand-tag {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+
+            .divider {
+                margin-bottom: 20px;
+            }
+
+            .headline h2 {
+                font-size: 14px;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+            }
+
+            .headline p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-bottom: 24px;
+            }
+
+            .feature-item {
+                padding: 12px 14px;
+                gap: 10px;
+            }
+
+            .feature-icon {
+                font-size: 18px;
+            }
+
+            .feature-text {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .contact-section {
+                padding: 16px 20px;
+                gap: 10px;
+            }
+
+            .contact-title {
+                font-size: 10px;
+                letter-spacing: 2px;
+                margin-bottom: 2px;
+            }
+
+            .contact-row {
+                gap: 12px;
+            }
+
+            .contact-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+            }
+
+            .contact-label {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .contact-value {
+                font-size: 13px;
+            }
+
+            .bottom-bar {
+                margin-top: 16px;
+                padding-top: 12px;
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .bottom-text {
+                font-size: 10px;
+            }
+
+            .badge {
+                padding: 4px 12px;
+                font-size: 9px;
+            }
+        }
+
+        /* RESPONSIVO - TABLET (600px - 1000px) */
+        @media (min-width: 601px) and (max-width: 1000px) {
+            body {
+                padding: 20px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 100%;
+                padding: 36px 32px;
+            }
+
+            .header {
+                gap: 18px;
+                margin-bottom: 28px;
+            }
+
+            .logo-box {
+                width: 58px;
+                height: 58px;
+                font-size: 17px;
+            }
+
+            .brand-name {
+                font-size: 25px;
+                letter-spacing: 2px;
+            }
+
+            .brand-tag {
+                font-size: 10px;
+                letter-spacing: 3px;
+            }
+
+            .divider {
+                margin-bottom: 24px;
+            }
+
+            .headline h2 {
+                font-size: 14px;
+                letter-spacing: 1.5px;
+                margin-bottom: 9px;
+            }
+
+            .headline p {
+                font-size: 14px;
+                line-height: 1.65;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+                gap: 11px;
+                margin-bottom: 28px;
+            }
+
+            .feature-item {
+                padding: 13px 15px;
+                gap: 11px;
+            }
+
+            .feature-icon {
+                font-size: 19px;
+            }
+
+            .feature-text {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .contact-section {
+                padding: 18px 22px;
+                gap: 11px;
+            }
+
+            .contact-title {
+                font-size: 10px;
+                letter-spacing: 2.5px;
+                margin-bottom: 3px;
+            }
+
+            .contact-row {
+                gap: 13px;
+            }
+
+            .contact-icon {
+                width: 31px;
+                height: 31px;
+                font-size: 13px;
+            }
+
+            .contact-label {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .contact-value {
+                font-size: 13px;
+            }
+
+            .bottom-bar {
+                margin-top: 20px;
+                padding-top: 14px;
+            }
+
+            .bottom-text {
+                font-size: 10px;
+            }
+
+            .badge {
+                padding: 4px 13px;
+                font-size: 10px;
+            }
+        }
+
+        /* RESPONSIVO - DESKTOP (acima de 1000px) */
+        @media (min-width: 1001px) {
+            /* Mantém os estilos originais */
         }
     </style>
 </head>
